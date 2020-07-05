@@ -1,4 +1,4 @@
-// Copyright Artur symanovic 2020
+// Copyright Artur Symanovic 2020
 #pragma once
 
 #include "CoreMinimal.h"

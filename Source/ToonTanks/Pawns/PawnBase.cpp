@@ -1,5 +1,6 @@
 // Copyright Artur Symanovic 2020
 
+#include "ToonTanks/Actors/ProjectileBase.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Components/CapsuleComponent.h"
 #include "PawnBase.h"
@@ -35,7 +36,19 @@ void APawnBase::RotateTurret(FVector LookAtTarget)
 
 void APawnBase::Fire()
 {
-	UE_LOG(LogTemp, Warning, TEXT("%s: Fire"), *GetName());
+	if (ProjectileClass)
+	{
+		FActorSpawnParameters SpawnParameters = FActorSpawnParameters();
+		FVector SpawnLocation = ProjectileSpawnPoint->GetComponentLocation();
+		FRotator SpawnRotation = ProjectileSpawnPoint->GetComponentRotation();
+		AProjectileBase* TempProjectile = GetWorld()->SpawnActor<AProjectileBase>(
+			ProjectileClass,
+			SpawnLocation,
+			SpawnRotation,
+			SpawnParameters
+		);
+		TempProjectile->SetOwner(this);
+	}
 }
 
 void APawnBase::HandleDestruction()

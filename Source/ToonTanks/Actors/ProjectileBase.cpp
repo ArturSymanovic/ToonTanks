@@ -1,5 +1,6 @@
 // Copyright Artur Symanovic 2020
 
+#include "Kismet/GameplayStatics.h"
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "ProjectileBase.h"
@@ -26,8 +27,27 @@ AProjectileBase::AProjectileBase()
 void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
 }
 
+void AProjectileBase::OnHit(
+	UPrimitiveComponent* HitComponent, 
+	AActor* OtherActor, 
+	UPrimitiveComponent* OtherComp, 
+	FVector NormalImpulse, 
+	const FHitResult& Hit
+)
+{
+	AActor* MyOwner = GetOwner();
+	if (!MyOwner)
+	{
+		return;
+	}
+	if (OtherActor!=NULL && OtherActor != this && OtherActor!= MyOwner)
+	{
+		UGameplayStatics::ApplyDamage(OtherActor, Damage, MyOwner->GetInstigatorController(), this, DamageType);
+	}
+	Destroy();
+}
 
 

@@ -1,5 +1,6 @@
 // Copyright Artur Symanovic 2020
 
+#include "Kismet/KismetMathLibrary.h"
 #include "Components/CapsuleComponent.h"
 #include "PawnBase.h"
 
@@ -20,4 +21,19 @@ APawnBase::APawnBase()
 
 	ProjectileSpawnPoint = CreateDefaultSubobject<USceneComponent>(TEXT("Projectile Spawn Point"));
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
+}
+
+void APawnBase::RotateTurret(FVector LookAtTarget)
+{
+
+}
+
+void APawnBase::Fire()
+{
+
+}
+
+void APawnBase::HandleDestruction()
+{
+
 }

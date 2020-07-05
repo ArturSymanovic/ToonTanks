@@ -25,12 +25,17 @@ APawnBase::APawnBase()
 
 void APawnBase::RotateTurret(FVector LookAtTarget)
 {
-
+	FVector StartLocation = TurretMesh->GetComponentLocation();
+	FRotator TurretRotation = UKismetMathLibrary::FindLookAtRotation(
+		StartLocation, 
+		FVector(LookAtTarget.X, LookAtTarget.Y, StartLocation.Z)
+	);
+	TurretMesh->SetWorldRotation(TurretRotation);
 }
 
 void APawnBase::Fire()
 {
-
+	UE_LOG(LogTemp, Warning, TEXT("%s: Fire"), *GetName());
 }
 
 void APawnBase::HandleDestruction()

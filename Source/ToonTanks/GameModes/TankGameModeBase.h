@@ -6,6 +6,9 @@
 #include "GameFramework/GameModeBase.h"
 #include "TankGameModeBase.generated.h"
 
+class APawnTank;
+class ApawnTurret;
+
 /**
  * 
  */
@@ -27,8 +30,13 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	void HandleGamestart();
-
+	void HandleGameStart();
 	void HandleGameOver(bool PlayerWon);
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = "true"))
+	APawnTank* PlayerTank;
+	
+	int32 TargetTurrets = 0;
+	int32 GetTargetTurretsCount();
 
 };

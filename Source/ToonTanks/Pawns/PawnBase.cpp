@@ -24,6 +24,11 @@ APawnBase::APawnBase()
 	ProjectileSpawnPoint->SetupAttachment(TurretMesh);
 }
 
+void APawnBase::PawnDestroyed()
+{
+	HandleDestruction();
+}
+
 void APawnBase::RotateTurret(FVector LookAtTarget)
 {
 	FVector StartLocation = TurretMesh->GetComponentLocation();

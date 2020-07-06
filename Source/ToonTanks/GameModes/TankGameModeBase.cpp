@@ -25,7 +25,6 @@ void ATankGameModeBase::ActorDied(AActor* DeadActor)
 	{
 		PlayerTank->PawnDestroyed();
 		HandleGameOver(false);
-
 		if (PlayerControllerRef)
 		{
 			PlayerControllerRef->SetPlayerEnabledState(false);

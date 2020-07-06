@@ -8,6 +8,7 @@
 class UCapsuleComponent;
 class AProjectileBase;
 class UHealthComponent;
+class UCameraShakeBase;
 
 UCLASS()
 class TOONTANKS_API APawnBase : public APawn
@@ -47,5 +48,8 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
 	USoundBase* DeathSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	TSubclassOf<UCameraShakeBase> DeathShake;
 
 };

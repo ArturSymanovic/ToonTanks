@@ -4,6 +4,7 @@
 #include "Components/StaticMeshComponent.h"
 #include "GameFramework/ProjectileMovementComponent.h"
 #include "Particles/ParticleSystemComponent.h"
+#include "ToonTanks/General/CameraShakeBase.h"
 #include "ProjectileBase.h"
 
 // Sets default values
@@ -62,6 +63,10 @@ void AProjectileBase::OnHit(
 		if (HitSound)
 		{
 			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
+		}
+		if (HitShake)
+		{
+			GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(HitShake, 1.0f);
 		}
 		Destroy();
 	}

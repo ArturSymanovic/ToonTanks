@@ -4,6 +4,7 @@
 #include "ToonTanks/Components/HealthComponent.h"
 #include "Kismet/KismetMathLibrary.h"
 #include "Components/CapsuleComponent.h"
+#include "ToonTanks/General/CameraShakeBase.h"
 #include "Kismet/GameplayStatics.h"
 #include "PawnBase.h"
 
@@ -69,5 +70,9 @@ void APawnBase::HandleDestruction()
 	if (DeathSound)
 	{
 		UGameplayStatics::PlaySoundAtLocation(this, DeathSound, GetActorLocation());
+	}
+	if (DeathShake)
+	{
+		GetWorld()->GetFirstPlayerController()->PlayerCameraManager->PlayCameraShake(DeathShake, 1.0f);
 	}
 }

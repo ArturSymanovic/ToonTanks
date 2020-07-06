@@ -32,6 +32,11 @@ void AProjectileBase::BeginPlay()
 {
 	Super::BeginPlay();
 	ProjectileMesh->OnComponentHit.AddDynamic(this, &AProjectileBase::OnHit);
+
+	if (LaunchSound)
+	{
+		UGameplayStatics::PlaySoundAtLocation(this, LaunchSound, GetActorLocation());
+	}
 }
 
 void AProjectileBase::OnHit(
@@ -53,6 +58,10 @@ void AProjectileBase::OnHit(
 		if (HitParticle)
 		{
 			UGameplayStatics::SpawnEmitterAtLocation(this, HitParticle, GetActorLocation(), FRotator::ZeroRotator);
+		}
+		if (HitSound)
+		{
+			UGameplayStatics::PlaySoundAtLocation(this, HitSound, GetActorLocation());
 		}
 		Destroy();
 	}

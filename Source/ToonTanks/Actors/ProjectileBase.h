@@ -9,6 +9,7 @@
 class UProjectileMovementComponent;
 class UParticleSystem;
 class UParticleSystemComponent;
+class USoundBase;
 
 UCLASS()
 class TOONTANKS_API AProjectileBase : public AActor
@@ -44,6 +45,12 @@ private:
 
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
 	UParticleSystem* HitParticle;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Effects", meta = (AllowPrivateAccess = "true"))
+	USoundBase* LaunchSound;
 
 	UFUNCTION()
 	virtual void OnHit(UPrimitiveComponent* HitComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp,FVector NormalImpulse, const FHitResult& Hit);

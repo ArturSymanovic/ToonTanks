@@ -8,6 +8,7 @@
 
 class APawnTank;
 class ApawnTurret;
+class APlayerControllerBase;
 
 /**
  * 
@@ -43,6 +44,6 @@ private:
 	int32 TargetTurrets = 0;
 	int32 GetTargetTurretsCount();
 
-
+	APlayerControllerBase* PlayerControllerRef;
 
 };

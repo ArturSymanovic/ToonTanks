@@ -35,8 +35,14 @@ private:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = "Player", meta = (AllowPrivateAccess = "true"))
 	APawnTank* PlayerTank;
+
+	//Blueprints do not accept int32!
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Game Loop", meta = (AllowPrivateAccess = "true"))
+	int StartDelay = 3;
 	
 	int32 TargetTurrets = 0;
 	int32 GetTargetTurretsCount();
+
+
 
 };

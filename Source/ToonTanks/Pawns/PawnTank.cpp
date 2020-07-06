@@ -23,6 +23,7 @@ void APawnTank::BeginPlay()
 void APawnTank::HandleDestruction()
 {
 	Super::HandleDestruction();
+	Destroy();
 	//TODO Create separate function for player hiding
 }
 
